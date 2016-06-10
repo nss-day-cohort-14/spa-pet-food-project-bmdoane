@@ -36,17 +36,25 @@ function executeThisCodeAfterFileIsLoaded() {
   var dogFoodHTML = "";
 
   // Used nested for loops to loop through layers of the JSON data
-
+  dogFoodHTML =  `
+    <div class="row hi-lite add-border">
+      <div class="col-md-3">Brand</div>
+      <div class="col-md-3">Types</div>
+      <div class="col-md-3">Volumes</div>
+      <div class="col-md-3">Price</div>
+    </div>`;
   for (var i = 0; i < data.dog_brands.length; i++) {
     //console.log("brands", data.dog_brands[i]);
-    dogFoodHTML += `<div>Brand: ${data.dog_brands[i].name}</div>`;
     for (var j = 0; j < data.dog_brands[i].types.length; j++) {
       //console.log("types", data.dog_brands[i].types);
-      dogFoodHTML += `<div>Types: ${data.dog_brands[i].types[j].type}</div>`;
       for (var k = 0; k < data.dog_brands[i].types[j].volumes.length; k++) {
         //console.log("volumes", data.dog_brands[i].types[j].volumes[k]);
-        dogFoodHTML += `<div>Volumes: ${data.dog_brands[i].types[j].volumes[k].name}</div>`;
-        dogFoodHTML += `<div>Price: ${data.dog_brands[i].types[j].volumes[k].price}</div>`;
+        dogFoodHTML += `<div class="row">`;
+        dogFoodHTML += `<div class="col-md-3">${data.dog_brands[i].name}</div>`;
+        dogFoodHTML += `<div class="col-md-3">${data.dog_brands[i].types[j].type}</div>`;
+        dogFoodHTML += `<div class="col-md-3">${data.dog_brands[i].types[j].volumes[k].name}</div>`;
+        dogFoodHTML += `<div class="col-md-3">${data.dog_brands[i].types[j].volumes[k].price}</div>`;
+        dogFoodHTML += `</div>`;
         // Need to build out dom with bootstrap structure 
 
         dogFood.innerHTML = dogFoodHTML;
@@ -79,24 +87,68 @@ function executeThisCodeAfterCatFileIsLoaded() {
   var catFood = document.getElementById('catFood-container');
   var catFoodHTML = "";
 
+  catFoodHTML = `
+    <div class="row hi-lite add-border">
+      <div class="col-md-2">Brand</div>
+      <div class="col-md-4">Breeds</div>
+      <div class="col-md-2">Types</div>
+      <div class="col-md-2">Volumes</div>
+      <div class="col-md-2">Price</div>
+    </div>`;
   for (var i = 0; i < data.cat_brands.length; i++) {
-    console.log("brands", data.cat_brands[i]);
-    catFoodHTML += `<div>Brand: ${data.cat_brands[i].name}</div>`;
+        catFoodHTML += `<div class="row">`;
+    //console.log("brands", data.cat_brands[i]);
+          catFoodHTML += `<div class="col-md-2">${data.cat_brands[i].name}</div>`;
+    for (var l = 0; l < data.cat_brands[i].breeds.length; l++) { 
+          catFoodHTML += `<div class="col-md-1">`
+          catFoodHTML += `${data.cat_brands[i].breeds[l].breed}`;      
+        console.log("breeds", data.cat_brands[i].breeds[l].breed);          
+          catFoodHTML += `</div>`
+    };
     for (var j = 0; j < data.cat_brands[i].types.length; j++) {
-      console.log("types", data.cat_brands[i].types);
-      catFoodHTML += `<div>Types: ${data.cat_brands[i].types[j].type}</div>`;
+      //console.log("types", data.cat_brands[i].types);
+          catFoodHTML += `<div class="col-md-2">${data.cat_brands[i].types[j].type}</div>`;
       for (var k = 0; k < data.cat_brands[i].types[j].volumes.length; k++) {
-        console.log("volumes", data.cat_brands[i].types[j].volumes[k]);
-        catFoodHTML += `<div>Volumes: ${data.cat_brands[i].types[j].volumes[k].name}</div>`;
-        catFoodHTML += `<div>Price: ${data.cat_brands[i].types[j].volumes[k].price}</div>`;
+        //console.log("volumes", data.cat_brands[i].types[j].volumes[k]);
+          catFoodHTML += `<div class="col-md-2">${data.cat_brands[i].types[j].volumes[k].name}</div>`;
+          catFoodHTML += `<div class="col-md-2">${data.cat_brands[i].types[j].volumes[k].price}</div>`;
         // Need to build out dom with bootstrap structure
-        // Add breeds?  Added to JSON.  Need to build into DOM.
+        // Need if statements (if k === 0) to build out column structure to be presentable
+        // Or need a new gameplan
 
+        catFoodHTML += `</div>`; // end of row
 
         catFood.innerHTML = catFoodHTML;
       };
-    };
+    };  
   };
 }
+
+  // for (var i = 0; i < data.cat_brands.length; i++) {
+  //       catFoodHTML += `<div class="row">`;
+  //   //console.log("brands", data.cat_brands[i]);
+  //         catFoodHTML += `<div class="col-md-2">${data.cat_brands[i].name}</div>`;
+  //   for (var l = 0; l < data.cat_brands[i].breeds.length; l++) { 
+  //         catFoodHTML += `<div class="col-md-1">`
+  //         catFoodHTML += `<div>${data.cat_brands[i].breeds[l].breed}</div>`;      
+  //       console.log("breeds", data.cat_brands[i].breeds[l].breed);          
+  //         catFoodHTML += `</div>`
+  //   };
+  //   for (var j = 0; j < data.cat_brands[i].types.length; j++) {
+  //     //console.log("types", data.cat_brands[i].types);
+  //         catFoodHTML += `<div class="col-md-2">${data.cat_brands[i].types[j].type}</div>`;
+  //     for (var k = 0; k < data.cat_brands[i].types[j].volumes.length; k++) {
+  //       //console.log("volumes", data.cat_brands[i].types[j].volumes[k]);
+  //         catFoodHTML += `<div class="col-md-2">${data.cat_brands[i].types[j].volumes[k].name}</div>`;
+  //         catFoodHTML += `<div class="col-md-2">${data.cat_brands[i].types[j].volumes[k].price}</div>`;
+  //       // Need to build out dom with bootstrap structure
+  //       // Add breeds?  Added to JSON.  Need to build into DOM.
+
+  //       catFoodHTML += `</div>`; // end of row
+
+  //       catFood.innerHTML = catFoodHTML;
+  //     };
+  //   };  
+  // };
 
 

@@ -1,0 +1,20 @@
+#inner-container {
+	width: 90%;
+	margin: 0 auto;
+}
+
+.add-color {
+	color: darkgreen;
+}
+
+.add-border {
+	border: 1px solid black;
+}
+
+.hi-lite {
+	background-color: yellow;
+}
+
+.hi-liteBlue {
+	background-color: lightblue;
+}
